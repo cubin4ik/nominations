@@ -1,0 +1,13 @@
+{% extends "votes/base.html" %}
+{% block content %}
+
+<section>
+    <h2 style="color: white; margin: 1.3em; text-align: center;"><strong>Вы вышли из аккаунта</strong></h2>
+    <article style="padding: 1.2em; border-radius: 10px;">
+        <small class="text-muted">
+            <a href="{% url 'account:login' %}">Войти снова</a>
+        </small>
+    </article>
+</section>
+</section>
+{% endblock content %}

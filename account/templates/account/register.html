@@ -1,0 +1,23 @@
+{% extends "votes/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<section>
+    <h2 style="color: white; margin: 1.3em; text-align: center;"><strong>Регистрация</strong></h2>
+    <article style="padding: 1.2em; border-radius: 10px;">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Зарегистрироваться</button>
+            </div>
+        </form>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                Уже есть аккаунт? <a class="ml-2" href="{% url 'account:login' %}">Войти</a>
+            </small>
+        </div>
+    </article>
+</section>
+{% endblock content %}

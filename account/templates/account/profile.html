@@ -1,0 +1,22 @@
+{% extends 'votes/base.html' %}
+{% block content %}
+<h2 style="color: white; margin: 1.3em; text-align: center;"><strong>Профиль</strong></h2>
+<article class="media content-section p-4">
+    <img class="rounded-circle profile-img" src="{{ user.profile_img.url }}">
+    <div class="media-body">
+        <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+        <small class="text-muted"><span class="text-muted">@{{ user.username }}</span></small>
+        <hr>
+        <p class="text-secondary">
+            {{ user.email }}
+        </p>
+        <a class="text-info" href="{% url 'account:logout' %}">Logout</a>
+    </div>
+</article>
+<!--    {% if user == object.author %}-->
+<!--<div>-->
+<!--    <a class="btn btn-outline-secondary" href="#">Update</a>-->
+<!--    <a class="btn btn-outline-danger" href="#">Delete</a>-->
+<!--</div>-->
+<!--    {% endif %}-->
+{% endblock content %}

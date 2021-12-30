@@ -1,0 +1,19 @@
+{% extends 'events/base.html' %}
+{% block content %}
+<article>
+    <h1>{{ event.title }}</h1>
+    <p>
+        {{ event.time|date:"H:i" }}
+    </p>
+    <p>
+        {{ event.description }}
+    </p>
+    <p>
+        <small>
+            {% for talent in event.talents.all %}
+            {{ talent }}{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        </small>
+    </p>
+</article>
+{% endblock content %}

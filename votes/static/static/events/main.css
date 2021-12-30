@@ -1,0 +1,94 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    text-decoration: none;
+    font-family: verdana, sans-serif;
+}
+html, body {
+    height: 100%;
+}
+body {
+    margin: auto;
+    max-width: 425px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("../media/pattern.png");
+}
+header {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-width: 425px;
+    z-index: 1;
+    background-color: rgba(0,0,0,0.8);
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    padding: 1em;
+    text-transform: uppercase;
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+main {
+    padding: 0px 15px;
+}
+article {
+    padding: 10px;
+    margin-bottom: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 2px;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+p {
+    margin-top: 10px;
+}
+h1, h2, h3, h4 {
+    font-weight: normal;
+}
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+button {
+  background-color: rgba(0,0,0,0); /* #32d16c */
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+svg {
+    display: block;
+    margin: auto;
+}
+.hidden {
+    display: none;
+}
+form {
+    text-align: center;
+}
+fieldset {
+    text-align: left;
+    border-width: 0px;
+}
+legend {
+    margin-bottom: 0.5em;
+    font-size: 1.5em;
+}
+.form-group > * {
+    font-size: 1.2em;
+    display: block;
+    margin-bottom: 0.5em;
+}
+input, textarea, select {
+    padding: 0.7em;
+    width: 100%;
+    font-size: 1.2em;
+}

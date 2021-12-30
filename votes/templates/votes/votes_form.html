@@ -1,0 +1,26 @@
+{% extends "votes/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<section>
+    <h2 style="color: white; margin: 1.3em; text-align: center;"><strong>Номинация</strong></h2>
+    <article style="padding: 1.2em; border-radius: 10px;">
+        <h2>
+            Почему {{ fav.first_name }}?
+        </h2>
+        <p class="expand" style="margin-top: 1.5em">
+            Это анонимно. Причины будут озвучены во время награждения победителя, но без указания автора.
+        </p>
+        <hr>
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Голосовать</button>
+            </div>
+        </form>
+    </article>
+</section>
+</section>
+{% endblock content %}
