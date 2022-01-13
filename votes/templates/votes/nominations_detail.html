@@ -1,0 +1,23 @@
+{% extends 'votes/base.html' %}
+{% block content %}
+<section class="main-section">
+    <h2 style="color: white; margin: 1em; text-align: center;"><strong>Голосуй за своего!</strong></h2>
+    <article style="padding: 1.2em; border-radius: 10px;{% if nomination.pk in voted %}background-color:#abffe6;{% endif %}">
+        <h2>
+            {{ nominations.title }}
+        </h2>
+        <p class="expand" style="margin-top: 1.5em">
+            {{ nominations.description }}
+        </p>
+        <hr>
+        <h2 class="expand hidden">{{ winner.first_name }} {{ winner.last_name }}</h2>
+    </article>
+    <article style="padding: 1.2em; border-radius: 10px;{% if nomination.pk in voted %}background-color:#abffe6;{% endif %}">
+        {% for reason in reasons %}
+        <p class="expand hidden" style="margin-top: 1.5em">
+            {{ reason.reason }}
+        </p>
+        {% endfor %}
+    </article>
+</section>
+{% endblock content %}

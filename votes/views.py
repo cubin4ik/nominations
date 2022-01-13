@@ -1,5 +1,5 @@
 from django.shortcuts import render, reverse
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DetailView
 from .models import Nominations, Votes
 from django.contrib.auth.mixins import LoginRequiredMixin
 from account.models import User
@@ -16,7 +16,7 @@ class NominationList(LoginRequiredMixin, ListView):
         context = super(NominationList, self).get_context_data(**kwargs)
         context['user_list'] = User.objects.all()
 
-        user_votes = Votes.objects.filter(voter__id=1).values_list('nomination__id', flat=True)
+        user_votes = Votes.objects.filter(voter__id=self.request.user.id).values_list('nomination__id', flat=True)
         context['voted'] = list(user_votes)
         print(context['voted'])
 
@@ -45,4 +45,27 @@ class VoteCreate(LoginRequiredMixin, CreateView):
         for key, value in self.request.GET.items():
             context[key] = value
 
+        return context
+
+
+class WinnerView(DetailView):
+    model = Nominations
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(WinnerView, self).get_context_data(**kwargs)
+
+        winner = User.objects.get(pk=1)
+        nom = Votes.objects.filter(nominee=1).count()
+
+        for user in User.objects.all():
+            votes = Votes.objects.filter(nominee=user.id)
+            print("ГОЛОСААААААА  ", votes.count())
+            if votes.count() > nom:
+                winner = user
+                nom = votes.count()
+
+        context['winner'] = winner
+        # context['reasons'] = Votes.objects.filter(nomination=self.object., nominee=context['winner'])
+
+        # context['fav'] = User.objects.get(pk=context['nominee'])
         return context
