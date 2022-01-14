@@ -29,6 +29,5 @@ class Votes(models.Model):
     def __str__(self):
         return f"{self.nomination} - {self.voter} - {self.nominee}"
 
-    @staticmethod
     def get_absolute_url(self):
         return reverse('index')

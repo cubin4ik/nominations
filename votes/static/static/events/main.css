@@ -54,7 +54,7 @@ h1, h2, h3, h4 {
 }
 a {
     color: inherit;
-    text-decoration: inherit;
+    text-decoration: none;
 }
 button {
   background-color: rgba(0,0,0,0); /* #32d16c */

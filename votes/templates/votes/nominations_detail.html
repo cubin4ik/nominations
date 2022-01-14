@@ -21,11 +21,11 @@
         {% endfor %}
     </article>
     <article class="expand hidden" style="padding: 1.2em; border-radius: 10px;">
-        {% for winner in winners %}
-        {{ winner.first_name }} {{ winner.last_name }}
-        <p class="expand hidden" style="margin-top: 1.5em">
-            {% for reason in reasons %}
-            • {{ reason.reason }}<br>
+        {% for reason_set in reasons %}
+        <h5>{{ reason_set.0.first_name }} {{ reason_set.0.last_name }}</h5>
+        <p>
+            {% for reason in reason_set.1 %}
+            • {{ reason }}<br>
             {% endfor %}
         </p>
         {% endfor %}

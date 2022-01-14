@@ -26,7 +26,6 @@ class NominationList(LoginRequiredMixin, ListView):
 class VoteCreate(LoginRequiredMixin, CreateView):
     model = Votes
     form_class = VotesForm
-    success_message = 'Ваш голос принят!'
 
     login_url = 'account:login'
 
@@ -54,6 +53,7 @@ class WinnerView(DetailView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(WinnerView, self).get_context_data(**kwargs)
 
+        # Finding winners
         nomination_id = self.object.pk
         attendees = User.objects.all()
 
@@ -77,8 +77,15 @@ class WinnerView(DetailView):
 
         reasons = []
         for winner in winners:
-            reasons = Votes.objects.filter(nomination=nomination_id, nominee=winner.pk)
+            winner_votes = Votes.objects.filter(nomination=nomination_id, nominee=winner.pk)
+            winner_reasons = []
+            for vote in winner_votes:
+                winner_reasons.append(vote.reason)
+
+            reasons.append((winner, winner_reasons))
 
         context['reasons'] = reasons
+        for reason in reasons:
+            print(reason)
 
         return context

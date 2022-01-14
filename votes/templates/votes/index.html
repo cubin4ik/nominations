@@ -5,12 +5,14 @@
     <h2 style="color: white; margin: 1em; text-align: center;"><strong>Голосуй за своего!</strong></h2>
     {% for nomination in nominations_list %}
     <article style="padding: 1.2em; border-radius: 10px;{% if nomination.pk in voted %}background-color:#abffe6;{% endif %}">
-        <h2>
-            {{ nomination.title }}
-        </h2>
-        <p class="expand" style="margin-top: 1.5em">
-            {{ nomination.description }}
-        </p>
+        <a href="{% url 'nomination' nomination.pk %}">
+            <h2>
+                {{ nomination.title }}
+            </h2>
+            <p class="expand" style="margin-top: 1.5em">
+                {{ nomination.description }}
+            </p>
+        </a>
         <hr>
         {% for user in user_list %}
         <a href="{% url 'vote' %}?nomination={{ nomination.id }}&nominee={{ user.id }}" class="btn btn-sm btn-outline mb-1">{{ user.first_name }}</a>
