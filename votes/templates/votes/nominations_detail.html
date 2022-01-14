@@ -2,20 +2,31 @@
 {% block content %}
 <section class="main-section">
     <h2 style="color: white; margin: 1em; text-align: center;"><strong>Голосуй за своего!</strong></h2>
-    <article style="padding: 1.2em; border-radius: 10px;{% if nomination.pk in voted %}background-color:#abffe6;{% endif %}">
+    <article style="padding: 1.2em; border-radius: 10px;">
         <h2>
             {{ nominations.title }}
         </h2>
-        <p class="expand" style="margin-top: 1.5em">
+        <p class="" style="margin-top: 1.5em">
             {{ nominations.description }}
         </p>
-        <hr>
-        <h2 class="expand hidden">{{ winner.first_name }} {{ winner.last_name }}</h2>
+        <p style="text-align: center;">
+            <button onclick="expand()" class=" expand btn btn-success">Узнать победителя</button>
+        </p>
     </article>
-    <article style="padding: 1.2em; border-radius: 10px;{% if nomination.pk in voted %}background-color:#abffe6;{% endif %}">
-        {% for reason in reasons %}
+    <article class="expand hidden" style="padding: 1.2em; border-radius: 10px;background-color:#abffe6;">
+        {% for winner in winners %}
+        <h2 style="text-align: center;">
+            {{ winner.first_name }} {{ winner.last_name }}
+        </h2>
+        {% endfor %}
+    </article>
+    <article class="expand hidden" style="padding: 1.2em; border-radius: 10px;">
+        {% for winner in winners %}
+        {{ winner.first_name }} {{ winner.last_name }}
         <p class="expand hidden" style="margin-top: 1.5em">
-            {{ reason.reason }}
+            {% for reason in reasons %}
+            • {{ reason.reason }}<br>
+            {% endfor %}
         </p>
         {% endfor %}
     </article>

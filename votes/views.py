@@ -54,18 +54,31 @@ class WinnerView(DetailView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(WinnerView, self).get_context_data(**kwargs)
 
-        winner = User.objects.get(pk=1)
-        nom = Votes.objects.filter(nominee=1).count()
+        nomination_id = self.object.pk
+        attendees = User.objects.all()
 
-        for user in User.objects.all():
-            votes = Votes.objects.filter(nominee=user.id)
-            print("ГОЛОСААААААА  ", votes.count())
-            if votes.count() > nom:
-                winner = user
-                nom = votes.count()
+        winner_votes = 0
+        winners = []
 
-        context['winner'] = winner
-        # context['reasons'] = Votes.objects.filter(nomination=self.object., nominee=context['winner'])
+        for attendee in attendees:
+            votes_count = Votes.objects.filter(nomination=nomination_id, nominee=attendee.id).count()
 
-        # context['fav'] = User.objects.get(pk=context['nominee'])
+            if votes_count > winner_votes:
+                winners.clear()
+                winners.append(attendee)
+                winner_votes = votes_count
+                print(f'WINNER: {attendee} ({votes_count} votes)')
+            elif votes_count == winner_votes:
+                winners.append(attendee)
+                winner_votes = votes_count
+                print(f'WINNER: {attendee} ({votes_count} votes)')
+
+        context['winners'] = winners
+
+        reasons = []
+        for winner in winners:
+            reasons = Votes.objects.filter(nomination=nomination_id, nominee=winner.pk)
+
+        context['reasons'] = reasons
+
         return context
