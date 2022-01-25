@@ -1,7 +1,7 @@
 from django.shortcuts import render, reverse
 from django.views.generic import ListView, CreateView, DetailView
 from .models import Nominations, Votes
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from account.models import User
 from .forms import VotesForm
 
@@ -47,7 +47,7 @@ class VoteCreate(LoginRequiredMixin, CreateView):
         return context
 
 
-class WinnerView(DetailView):
+class WinnerView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
     model = Nominations
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -89,3 +89,8 @@ class WinnerView(DetailView):
             print(reason)
 
         return context
+
+    def test_func(self):
+        if self.request.user.is_superuser:
+            return True
+        return False
