@@ -26,7 +26,7 @@ with open(os.path.join(BASE_DIR, "nominations", "key.txt"), "r") as secret_key:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '192.168.0.19']
+ALLOWED_HOSTS = ['127.0.0.1', '192.168.0.19', '192.168.0.29']
 
 
 # Application definition
