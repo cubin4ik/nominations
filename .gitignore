@@ -237,6 +237,7 @@ content
 dump.json
 share.json
 .idea/
+db.sqlite3
 
 # leadbook .idea/
 .idea/misc.xml
