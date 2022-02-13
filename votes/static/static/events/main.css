@@ -56,6 +56,10 @@ a {
     color: inherit;
     text-decoration: none;
 }
+a:hover {
+    text-decoration: none;
+    text-color: black;
+}
 button {
   background-color: rgba(0,0,0,0); /* #32d16c */
   border: none;
