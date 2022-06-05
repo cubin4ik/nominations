@@ -14,7 +14,7 @@ class NominationList(LoginRequiredMixin, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(NominationList, self).get_context_data(**kwargs)
-        context['user_list'] = User.objects.all()
+        context['user_list'] = User.objects.all().exclude(pk=self.request.user.pk)
 
         user_votes = Votes.objects.filter(voter__id=self.request.user.id).values_list('nomination__id', flat=True)
         context['voted'] = list(user_votes)
